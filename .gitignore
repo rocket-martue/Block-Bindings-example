@@ -1,0 +1,69 @@
+# WordPress Plugin .gitignore
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build files
+build/
+dist/
+
+# Package files
+*.zip
+*.tar.gz
+
+# IDE and Editor
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Cache
+.cache/
+*.cache
+
+# PHP tools
+.phpunit.result.cache
+.php-cs-fixer.cache
+phpcs-report.txt
+
+# Composer
+composer.lock
+
+# npm/yarn
+package-lock.json
+yarn.lock
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Custom exclusions
+~*
+_*
+-*
+.docs/
