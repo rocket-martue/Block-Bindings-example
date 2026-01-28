@@ -6,6 +6,12 @@ WordPress の Block Bindings API を使用するためのサンプルプラグ�
 
 このプラグインは、WordPress 6.5 で導入された Block Bindings API の実装例を提供します。Block Bindings API を使用すると、ブロックの属性を動的なデータソース（カスタムフィールド、外部 API など）にバインドできます。
 
+## 参考資料
+
+このプラグインは以下の記事を参考に作成しています：
+
+- [WordPress Block Bindings APIの概要と使い方](https://kinsta.com/jp/blog/wordpress-block-bindings-api/) - Kinsta
+
 ## 動作環境
 
 - WordPress 6.5 以上
@@ -32,11 +38,28 @@ WordPress の Block Bindings API を使用するためのサンプルプラグ�
 
 ### カスタムフィールドのバインディング
 
-投稿メタフィールド `block_bindings_image_url` を登録し、画像ブロックなどにバインドできます。
+以下の投稿メタフィールドを登録し、ブロックにバインドできます：
 
-### 天気 API 連携
+| メタキー | 説明 |
+|---------|------|
+| `block_bindings_city_name` | 都市名 |
+| `block_bindings_image_url` | 都市画像のURL |
+| `block_bindings_city_lat` | 緯度 |
+| `block_bindings_city_lng` | 経度 |
 
-外部の天気 API からデータを取得し、ブロックに動的に表示するサンプル実装を含みます。
+### 天気 API 連携（カスタムバインディングソース）
+
+`bb/weather-condition` というカスタムバインディングソースを登録し、[Open-Meteo API](https://open-meteo.com/) から取得した天気データをブロックに動的に表示できます。
+
+取得できるデータ：
+- `temperature` - 現在の気温（°C）
+- `weather_state` - 天気の状態（clear, cloudy, rainy, snowy, thunderstorm）
+
+天気データは30分間キャッシュされ、API呼び出し回数を削減します。
+
+### 未実装の機能
+
+参考記事の「[カスタムバインディングソースのUIを作成する方法](https://kinsta.com/jp/blog/wordpress-block-bindings-api/#ui)」セクション（WordPress 6.9 以降で利用可能）はまだ実装されていません。
 
 ## 使用方法
 
