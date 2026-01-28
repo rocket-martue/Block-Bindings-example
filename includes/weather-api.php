@@ -1,18 +1,17 @@
 <?php
 /**
- * Weather API functions for Block Bindings Example.
+ * Weather API 関連の関数
  *
- * This file contains functions to fetch and cache weather data
- * from the Open-Meteo API.
+ * Open-Meteo API から天気データを取得・キャッシュする関数を含みます。
  *
  * @package Block_Bindings_Example
  */
 
 /**
- * Fetch and cache weather data from Open-Meteo API.
+ * Open-Meteo API から天気データを取得しキャッシュする
  *
- * @param int $post_id The post ID to fetch weather data for.
- * @return array|false Weather data array or false on failure.
+ * @param int $post_id 天気データを取得する投稿ID。
+ * @return array|false 天気データの配列、または失敗時は false。
  */
 function bb_fetch_and_cache_weather_data( $post_id ) {
 	$lat = get_post_meta( $post_id, 'block_bindings_city_lat', true );
@@ -71,7 +70,7 @@ function bb_fetch_and_cache_weather_data( $post_id ) {
 		'weather_state' => bb_map_wmo_code_to_state( (int) $weather_code ),
 	);
 
-	// Cache for 30 minutes
+	// 30分間キャッシュ
 	set_transient( $transient_key, $mapped_data, BB_WEATHER_CACHE_TIME );
 
 	bb_debug_log( 'BB DEBUG: 天気データを取得し、キャッシュしました' );
@@ -80,10 +79,10 @@ function bb_fetch_and_cache_weather_data( $post_id ) {
 }
 
 /**
- * Map WMO weather code to a simplified weather state string.
+ * WMO天気コードを簡略化した天気状態の文字列にマッピングする
  *
- * @param int $code WMO weather code from Open-Meteo API.
- * @return string Weather state: 'clear', 'rainy', 'snowy', 'thunderstorm', or 'cloudy'.
+ * @param int $code Open-Meteo API の WMO 天気コード。
+ * @return string 天気状態: 'clear', 'rainy', 'snowy', 'thunderstorm', または 'cloudy'。
  */
 function bb_map_wmo_code_to_state( $code ) {
 	if ( $code >= 0 && $code <= 3 ) {
